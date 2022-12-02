@@ -30,5 +30,5 @@ print(f'Part one: {maximum}')
 elves.sort(reverse = True)
 
 # Sum the top three
-topThree = elves[0] + elves[1] + elves[2]
+topThree = sum(elves[0:3])
 print(f' Part two: {topThree}')
