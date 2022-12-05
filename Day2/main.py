@@ -20,7 +20,7 @@ for row in data:
     games.append(row.split(' '))
 
 # print(games)
-# Round score is 1 for Rock , 2 for Paper, 3 for sCissors plus the score for the outcome of the round 
+# Round score is 1 for Rock , 2 for Paper, 3 for Scissors plus the score for the outcome of the round 
  ## 0 if I lost, 3 if it was a draw, 6 if I won
 
  # Total all round scores.
