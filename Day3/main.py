@@ -9,14 +9,19 @@ priority = { k: i + 1 for i, k in enumerate(letters)}
 # Set a variable to add the total as we go
 total = 0
 
+# For each rucksack...
 for row in rucksackContents:
+        # Count how many items...
         items = len(row)
         howMany = int(items/2)
+        # Assign the items to each compartment...
         compartment1 = row[0:howMany]
         compartment2 = row[howMany:]
+        # Find the common item(s) between the compartments...
         common = list(set(compartment1) & set(compartment2))
+        # ...And add up the total of the priorities!
         for i in common:
             total += priority[i]
 
-print(total)
+print(f'The sum of the priorities of item types that appear in both compartments is: {total}')
 
