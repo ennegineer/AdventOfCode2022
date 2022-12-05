@@ -25,12 +25,12 @@ def PartOne():
 
     print(f'The sum of the priorities of item types that appear in both compartments is: {total}')
 
-def PartTwo():
+def PartTwo(mod):
     # Now we need to look at each three rucksacks as a group.
     # Set a variable to add the total as we go
     total = 0
-    # For each set of 3, set the rucksack contents for each elf
-    mod = 3
+    # For each group of 3 (or whatever group size is entered), set the rucksack contents for each elf in the group
+    # In the example, 3 elves per group
     for i, _ in enumerate(rucksackContents):
         if ((i+1) % mod == 0):
             # Set an empty variable to add the contents for the group as a list
@@ -45,4 +45,5 @@ def PartTwo():
 
     print(f'The second answer is {total}')
 
-PartTwo()
+# Run the function for part two with an elf group size of 3
+PartTwo(3)
