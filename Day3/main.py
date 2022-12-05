@@ -30,17 +30,19 @@ def PartTwo():
     # Set a variable to add the total as we go
     total = 0
     # For each set of 3, set the rucksack contents for each elf
-    for i, row in enumerate(rucksackContents):
-        if ((i+1) % 3 == 0):
-            elf1 = rucksackContents[i-2]
-            elf2 = rucksackContents[i-1]
-            elf3 = rucksackContents[i]
+    mod = 3
+    for i, _ in enumerate(rucksackContents):
+        if ((i+1) % mod == 0):
+            # Set an empty variable to add the contents for the group as a list
+            contents = []
             # What item do all three elves have in common?
-            commonThree = list(set(elf1) & set(elf2) & set(elf3))
-            # Add up the total for the common items.
-            for x in commonThree:
+            for m in range(mod):
+                contents.append(rucksackContents[i-m])
+            common = set.intersection(*map(set,contents))
+            # Add up the total of the priorities
+            for x in common:
                 total += priority[x]
 
     print(f'The second answer is {total}')
 
-PartTwo()    
+PartTwo()
