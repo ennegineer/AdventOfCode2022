@@ -47,6 +47,7 @@ stacks = stacks.iloc[1: , :]
 stack1 = stacks['1'].values.tolist()
 # this part is taking out any blank items from each list
 stack1 = list(filter(None, stack1))
+# repeat those two steps for all stacks
 stack2 = stacks['2'].values.tolist()
 stack2 = list(filter(None, stack2))
 stack3 = stacks['3'].values.tolist()
@@ -64,33 +65,64 @@ stack8 = list(filter(None, stack8))
 stack9 = stacks['9'].values.tolist()
 stack9 = list(filter(None, stack9))
 
-print(stack1)
-
 # Make a dataframe for the moves
 movedatadf = movedatadf.drop([0, 2, 4], axis = 1)
 
-# moves[1] is how many; moves[3] is from col; moves[5] is to col
-for index, row in movedatadf.iterrows():
-    qty = int(row[1])
-    moveFrom = eval('stack' + row[3])
-    moveTo = eval('stack' + row[5])
+def PartOne():
+    # moves[1] is how many; moves[3] is from col; moves[5] is to col
+    for index, row in movedatadf.iterrows():
+        qty = int(row[1])
+        moveFrom = eval('stack' + row[3])
+        moveTo = eval('stack' + row[5])
+        
+        for q in range(1, qty+1, 1):
+            # Take the last row from col moves[3] and move it to moves[5]
+            moveTo.append(moveFrom[-1])
+            print(moveFrom)
+            moveFrom.pop()
     
-    for q in range(1, qty+1, 1):
-        # Take the last row from col moves[3] and move it to moves[5]
-        moveTo.append(moveFrom[-1])
-        print(moveFrom)
-        moveFrom.pop()
-  
-answer = []
-answer.append(stack1[-1])
-answer.append(stack2[-1])
-answer.append(stack3[-1])
-answer.append(stack4[-1])
-answer.append(stack5[-1])
-answer.append(stack6[-1])
-answer.append(stack7[-1])
-answer.append(stack8[-1])
-answer.append(stack9[-1])
+    answer = []
+    answer.append(stack1[-1])
+    answer.append(stack2[-1])
+    answer.append(stack3[-1])
+    answer.append(stack4[-1])
+    answer.append(stack5[-1])
+    answer.append(stack6[-1])
+    answer.append(stack7[-1])
+    answer.append(stack8[-1])
+    answer.append(stack9[-1])
 
-print(answer)
-# The correct answer is QNNTGTPFN!
+    print(answer)
+    # The correct answer is QNNTGTPFN!
+
+def PartTwo():
+    # moves[1] is how many; moves[3] is from col; moves[5] is to col
+    for index, row in movedatadf.iterrows():
+        qty = eval(row[1])
+        moveFrom = eval('stack' + row[3])
+        moveTo = eval('stack' + row[5])
+
+        # Set aside a stack to move the quantity of crates, then reverse and put them into the 'move to' stack
+        newStack = []
+        for _ in range(qty):
+            newStack.append(moveFrom.pop())
+
+        newStack.reverse()
+        for each in newStack:
+            moveTo.append(each)
+    
+    answer = []
+    answer.append(stack1[-1])
+    answer.append(stack2[-1])
+    answer.append(stack3[-1])
+    answer.append(stack4[-1])
+    answer.append(stack5[-1])
+    answer.append(stack6[-1])
+    answer.append(stack7[-1])
+    answer.append(stack8[-1])
+    answer.append(stack9[-1])
+
+    print(answer)
+    # The correct answer is GGNPJBTTR
+
+PartTwo()
