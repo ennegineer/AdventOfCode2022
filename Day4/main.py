@@ -7,7 +7,8 @@ rangedata = []
 for row in data:
     rangedata.append(row.split(','))
 
-overlaps = 0
+overlaps1 = 0
+overlaps2 = 0
 
 def rangefunc(str1, str2):
     rangelist1 = str1.split('-')
@@ -27,6 +28,29 @@ def rangefunc(str1, str2):
 for row in rangedata:
     result = rangefunc(row[0], row[1])
     if result == True:
-        overlaps += 1
+        overlaps1 += 1
 
-print(overlaps)
+print(overlaps1)
+
+def rangefunc2(str1, str2):
+    rangelist1 = str1.split('-')
+    start1 = int(rangelist1[0])
+    end1 = int(rangelist1[1]) + 1
+    rangelist2 = str2.split('-')
+    start2 = int(rangelist2[0])
+    end2 = int(rangelist2[1]) + 1
+    list1 = list(range(start1, end1))
+    list2 = list(range(start2, end2))
+    check = any(item in list1 for item in list2)
+    check2 = any(item in list2 for item in list1)
+
+    if check or check2 is True:
+        return True
+
+
+for row in rangedata:
+    result = rangefunc2(row[0], row[1])
+    if result == True:
+        overlaps2 += 1
+
+print(overlaps2)
